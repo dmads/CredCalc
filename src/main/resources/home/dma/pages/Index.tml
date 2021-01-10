@@ -1,0 +1,43 @@
+<html t:type="layout" title="Index"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd"
+      xmlns:p = "tapestry:parameter">
+
+
+    <div class="cc">
+        <h3>${message:testName}</h3>
+        <t:form t:id="filterCriteria" async="true" class="form-horizontal">
+
+            <div class="form-group">
+                <t:label for="creditSum" t:encoder="stringValueEncoder"/>:
+                <t:textfield t:id="creditSum" t:validate = "required, maxlength = 6, min = 100000, max = 500000" secure="never"/>
+            </div>
+
+            <div class="form-group">
+                <t:label for="creditDuration"/>:
+                <t:textfield t:id="creditDuration" t:validate = "required, maxlength = 2, min = 12, max = 60" secure="never"/>
+            </div>
+
+            <div class="form-group">
+                <t:label for="creditInterestRate"/>:
+                <t:textfield t:id="creditInterestRate" disabled="true" secure="never"/>
+            </div>
+
+            <div class="form-group">
+                <t:submit value="Рассчитать"/>
+            </div>
+        </t:form>
+        <t:zone t:id="paymentsListzone" class="span4">
+            <div>
+                <t:grid
+                    source="PaymentsList"
+                    rowsPerPage="12"
+                    include="year, month, paymentPrincipal, paymentInterest, totalPaymentAmount, remainingPrincipalDebt"
+                    pagerPosition="top"
+                    inplace="true">
+
+                </t:grid>
+            </div>
+
+        </t:zone>
+    </div>
+</html>
